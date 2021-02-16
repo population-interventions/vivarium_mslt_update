@@ -7,7 +7,7 @@ from tobacco.artifacts import assemble_tobacco_artifacts
 from tobacco.specifications import (create_model_specifications,
                                     create_reduce_acmr_specification,
                                     create_reduce_chd_specification)
-from tobacco.artifacts import run_many
+from tobacco.mslt import run_many
 
 
 @click.command()
