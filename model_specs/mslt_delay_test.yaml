@@ -30,7 +30,7 @@ components:
 
 configuration:
     input_data:
-        artifact_path: C:\Dev\Repos\vivarium_mslt_update/artifacts/mslt_tobacco_maori_0-years.hdf
+        artifact_path: ../artifacts/mslt_tobacco_maori_0-years.hdf
         input_draw_number: 0
         location: ''
     interpolation:
@@ -46,7 +46,7 @@ configuration:
         start:
             year: 2011
         end:
-            year: 2120
+            year: 2013
         step_size: 365  # In days
     tobacco:
         constant_prevalence: False

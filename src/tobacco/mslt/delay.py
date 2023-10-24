@@ -268,15 +268,7 @@ class DelayedRisk:
         Define the initial distribution of the population across the bins, in
         both the BAU and the intervention scenario.
         """
-        # Set all bins to zero, in order to create the required columns.
-        pop = pd.DataFrame({}, index=pop_data.index)
-        for column in self.get_bin_names():
-            pop[column] = 0.0
-
-        # Update the life table, so that we can then obtain a view that
-        # includes the population counts.
-        self.population_view.update(pop)
-        pop = self.population_view.get(pop_data.index)
+        pop = self.population_view.subview(['population']).get(pop_data.index)
 
         # Calculate the absolute prevalence by multiplying the fractional
         # prevalence by the population size for each cohort.
