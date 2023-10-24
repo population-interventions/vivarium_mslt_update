@@ -146,7 +146,7 @@ class MorbidityMortality:
         #   (b) calculating the cumulative sums in each cohort; and
         #   (c) restoring the original order.
         cumsum = grouped.apply(lambda x: pd.Series(x[::-1].cumsum()).iloc[::-1])
-        return cumsum / table[denom_col]
+        return cumsum / table[denom_col].values
 
     def write_output(self, event):
         data = pd.concat(self.tables, ignore_index=True)
@@ -161,12 +161,12 @@ class MorbidityMortality:
         data = data[cols]
         # Calculate life expectancy and HALE for the BAU and intervention,
         # with respect to the initial population, not the survivors.
-        data['LE'] = self.calculate_LE(data, 'person_years', 'prev_population')
+        data['LE'] = self.calculate_LE(data, 'person_years', 'prev_population').values
         data['bau_LE'] = self.calculate_LE(data, 'bau_person_years',
-                                           'bau_prev_population')
-        data['HALE'] = self.calculate_LE(data, 'HALY', 'prev_population')
+                                           'bau_prev_population').values
+        data['HALE'] = self.calculate_LE(data, 'HALY', 'prev_population').values
         data['bau_HALE'] = self.calculate_LE(data, 'bau_HALY',
-                                           'bau_prev_population')
+                                           'bau_prev_population').values
         output_csv_mkdir(data, self.output_file, index=False)
 
 
